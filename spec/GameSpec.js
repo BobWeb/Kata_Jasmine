@@ -52,8 +52,10 @@ describe('Un match de tennis en simple', function () {
     });
     it('Balle de match Djoko !!', function() {
         game.playerTwoScores();
+        spyOn(game, 'isDeuce');
         expect(game._playerTwoScore).toEqual(3);
         expect(game.getScore()).toEqual('30 - 40');
+        expect(game.isDeuce).toHaveBeenCalled();
     });
     it('Egalité !!', function() {
         game.playerOneScores();
@@ -61,11 +63,6 @@ describe('Un match de tennis en simple', function () {
         expect(game._playerTwoScore).toEqual(game._playerTwoScore);
         expect(game.getScore()).toEqual('Deuce');
         expect(game._playerOneScore).toBeGreaterThan(2);
-    });
-    it('Le score est "deuce"', function() {
-        spyOn(game, 'isDeuce');
-        game.getScore();
-        expect(game.isDeuce).toHaveBeenCalled();
     });
     it('Avantage Federer !', function() {
         game.playerOneScores();
